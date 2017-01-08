@@ -9,7 +9,6 @@ import guiPractice.components.Button;
 import guiPractice.components.ClickableScreen;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
-import wackAMole.MoleInterface;
 
 public class SimonScreenFulton extends ClickableScreen implements Runnable {
 	
@@ -72,9 +71,8 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 		}
 	}
 
-	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		addButtons();
+		addButtons(viewObjects);
 		progress = getProgress();
 		label = new TextLabel(130,230,300,40,"Let's play Simon!");
 		sequence = new ArrayList<MoveInterfaceFulton>();
@@ -100,6 +98,11 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 		return getMove(button[nextMove]);
 	}
 
+	private MoveInterfaceFulton getMove(ButtonInterfaceFulton b) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	/**
 	Placeholder until partner finishes implementation of ProgressInterface
 	*/
@@ -107,7 +110,7 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 		return null;
 	}
 
-	private void addButtons() {
+	private void addButtons(List<Visible> viewObjects) {
 		 int numberOfButtons = 5;
 		 button = new ButtonInterfaceFulton[numberOfButtons];
 		 Color[] bColors = {Color.red,Color.blue,Color.green,Color.black,Color.yellow};
