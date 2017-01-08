@@ -8,9 +8,11 @@ import guiPractice.components.Component;
 
 public class Button extends Component implements ButtonInterfaceFulton {
 
+	private Color color;
+	private final Color DIM = new Color(105, 105, 105);
+	
 	public Button(int x, int y, int w, int h) {
 		super(x, y, w, h);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -20,15 +22,23 @@ public class Button extends Component implements ButtonInterfaceFulton {
 	}
 
 	@Override
-	public boolean isHovered(int arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isHovered(int x, int y) {
+		if(inBetween(x, getX(), getX() + getWidth()) && inBetween(y, getY(), getY() + getHeight()))
+			return true;
+		else 
+			return false;
+	}
+	
+	public boolean inBetween(int x, int y, int z){
+		if(x > y && x < z)
+			return true;
+		else 
+			return false;
 	}
 
 	@Override
 	public void setColor(Color color) {
-		// TODO Auto-generated method stub
-
+		this.color = color;
 	}
 
 	@Override
@@ -39,20 +49,20 @@ public class Button extends Component implements ButtonInterfaceFulton {
 
 	@Override
 	public void highlight() {
-		// TODO Auto-generated method stub
-
+		this.color = color;
+		update();
 	}
 
 	@Override
 	public void dim() {
-		// TODO Auto-generated method stub
-
+		this.color = DIM;
+		update();
 	}
 
 	@Override
-	public void update(Graphics2D arg0) {
-		// TODO Auto-generated method stub
-
+	public void update(Graphics2D g) {
+		g.setColor(this.color);
+		g.fillOval(getX(), getY(), getWidth(), getHeight());
 	}
 
 }
