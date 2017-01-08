@@ -85,6 +85,14 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 		viewObjects.add(label);
 	}
 
+	public int getRoundNumber() {
+		return roundNumber;
+	}
+
+	public void setRoundNumber(int roundNumber) {
+		this.roundNumber = roundNumber;
+	}
+
 	private MoveInterfaceFulton randomMove() {
 		int nextMove;
 		while(true){
@@ -107,7 +115,7 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 	Placeholder until partner finishes implementation of ProgressInterface
 	*/
 	private ProgressInterfaceFulton getProgress() {
-		return null;
+		return new Progress(200, 200, 50, 50);
 	}
 
 	private void addButtons(List<Visible> viewObjects) {
