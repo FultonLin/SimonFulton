@@ -2,6 +2,7 @@ package simon;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.List;
 
 import guiPractice.components.Action;
 import guiPractice.components.Button;
@@ -156,5 +157,11 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 
 	private ButtonInterfaceFulton getAButton() {
 		return null;
+	}
+
+	@Override
+	public void initAllObjects(List<Visible> arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }
