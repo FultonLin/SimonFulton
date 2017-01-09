@@ -36,8 +36,8 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 	private void nextRound() {
 		acceptingInput = false;
 		roundNumber += 1;
-		ProgressInterfaceFulton.setRound(roundNumber);
-		ProgressInterfaceFulton.setSequenceSize(sequence.size());
+		progress.setRound(roundNumber);
+		progress.setSequenceSize(sequence.size());
 		changeText("Simon's turn");
 		label.setText("");
 		playSequence();
@@ -117,12 +117,11 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 		 Color[] bColors = {Color.red,Color.blue,Color.green,Color.black,Color.yellow};
 		 
 		 for(int i = 0; i < numberOfButtons; i++){
-			 button[i] = getAButton();
-			 button[i].setColor(bColors[i]);
-			 button[i].setX(160 + (int)(100*Math.cos(i*2*Math.PI/(numberOfButtons))));
-			 button[i].setY(160 + (int)(100*Math.cos(i*2*Math.PI/(numberOfButtons))));
-			 final ButtonInterfaceFulton b = button[i];
-			 button[i].setAction(new Action(){
+			 final ButtonInterfaceFulton b = getAButton();
+			 b.setColor(bColors[i]);
+			 b.setX(160 + (int)(100*Math.cos(i*2*Math.PI/(numberOfButtons))));
+			 b.setY(160 + (int)(100*Math.cos(i*2*Math.PI/(numberOfButtons))));
+			 b.setAction(new Action(){
 					public void act(){
 						if(acceptingInput){
 							Thread blink = new Thread(new Runnable(){
