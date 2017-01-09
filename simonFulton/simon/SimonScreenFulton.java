@@ -12,7 +12,6 @@ import guiPractice.components.Visible;
 
 public class SimonScreenFulton extends ClickableScreen implements Runnable {
 	
-		
 	private TextLabel label;
 	private ButtonInterfaceFulton[] button;
 	private ArrayList<MoveInterfaceFulton> sequence; 

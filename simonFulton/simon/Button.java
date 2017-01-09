@@ -10,6 +10,7 @@ public class Button extends Component implements ButtonInterfaceFulton {
 
 	private Color color;
 	private final Color DIM = new Color(105, 105, 105);
+	public Action action;
 	
 	public Button(int x, int y, int w, int h) {
 		super(x, y, w, h);
@@ -17,8 +18,7 @@ public class Button extends Component implements ButtonInterfaceFulton {
 
 	@Override
 	public void act() {
-		// TODO Auto-generated method stub
-
+		action.act();
 	}
 
 	@Override
@@ -43,8 +43,7 @@ public class Button extends Component implements ButtonInterfaceFulton {
 
 	@Override
 	public void setAction(Action a) {
-		// TODO Auto-generated method stub
-
+		this.action = a;
 	}
 
 	@Override
