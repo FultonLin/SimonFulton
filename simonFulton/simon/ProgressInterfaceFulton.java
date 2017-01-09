@@ -9,7 +9,5 @@ public interface ProgressInterfaceFulton extends Visible {
 	static void setSequenceSize(int size) {
 	}
 	
-	public int getRoundNumber();
-
 	void gameOver();
 }
