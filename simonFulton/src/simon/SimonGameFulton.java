@@ -5,9 +5,7 @@ import guiPractice.GUIApplication;
 public class SimonGameFulton extends GUIApplication {
 
 	public SimonGameFulton() {
-		SimonGameFulton game = new SimonGameFulton();
-		Thread app = new Thread(game);
-		app.start();
+		
 	}
 
 	@Override
@@ -16,4 +14,9 @@ public class SimonGameFulton extends GUIApplication {
 		setScreen(ssf);
 	}
 
+	public static void main(String[] args) {
+		SimonGameFulton game = new SimonGameFulton();
+		Thread app = new Thread(game);
+		app.start();
+	}
 }

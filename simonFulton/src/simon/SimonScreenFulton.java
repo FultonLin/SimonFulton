@@ -2,13 +2,13 @@ package simon;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.List;
 
 import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.ClickableScreen;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
-import wackAMole.MoleInterface;
 
 public class SimonScreenFulton extends ClickableScreen implements Runnable {
 	
@@ -71,9 +71,8 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 		}
 	}
 
-	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		addButtons();
+		addButtons(viewObjects);
 		progress = getProgress();
 		label = new TextLabel(130,230,300,40,"Let's play Simon!");
 		sequence = new ArrayList<MoveInterfaceFulton>();
@@ -84,6 +83,14 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 		roundNumber = 0;
 		viewObjects.add(progress);
 		viewObjects.add(label);
+	}
+
+	public int getRoundNumber() {
+		return roundNumber;
+	}
+
+	public void setRoundNumber(int roundNumber) {
+		this.roundNumber = roundNumber;
 	}
 
 	private MoveInterfaceFulton randomMove() {
@@ -99,14 +106,19 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 		return getMove(button[nextMove]);
 	}
 
+	private MoveInterfaceFulton getMove(ButtonInterfaceFulton b) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	/**
 	Placeholder until partner finishes implementation of ProgressInterface
 	*/
 	private ProgressInterfaceFulton getProgress() {
-		return null;
+		return new Progress(200, 200, 50, 50);
 	}
 
-	private void addButtons() {
+	private void addButtons(List<Visible> viewObjects) {
 		 int numberOfButtons = 5;
 		 button = new ButtonInterfaceFulton[numberOfButtons];
 		 Color[] bColors = {Color.red,Color.blue,Color.green,Color.black,Color.yellow};
@@ -156,5 +168,11 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 
 	private ButtonInterfaceFulton getAButton() {
 		return null;
+	}
+
+	@Override
+	public void initAllObjects(List<Visible> arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }
