@@ -84,13 +84,7 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 		viewObjects.add(label);
 	}
 
-	public int getRoundNumber() {
-		return roundNumber;
-	}
-
-	public void setRoundNumber(int roundNumber) {
-		this.roundNumber = roundNumber;
-	}
+	
 
 	private MoveInterfaceFulton randomMove() {
 		int nextMove;
@@ -117,7 +111,7 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 		return new Progress(200, 200, 50, 50);
 	}
 
-	private void addButtons(List<Visible> viewObjects) {
+	private void addButtons(ArrayList<Visible> viewObjects) {
 		 int numberOfButtons = 5;
 		 button = new ButtonInterfaceFulton[numberOfButtons];
 		 Color[] bColors = {Color.red,Color.blue,Color.green,Color.black,Color.yellow};
@@ -169,9 +163,4 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 		return null;
 	}
 
-	@Override
-	public void initAllObjects(List<Visible> arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 }

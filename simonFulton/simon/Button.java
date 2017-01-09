@@ -61,6 +61,7 @@ public class Button extends Component implements ButtonInterfaceFulton {
 	@Override
 	public void update(Graphics2D g) {
 		g.setColor(this.color);
+		g.drawOval(getX(), getY(), getWidth(), getHeight());
 		g.fillOval(getX(), getY(), getWidth(), getHeight());
 	}
 
