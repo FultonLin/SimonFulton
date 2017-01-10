@@ -2,10 +2,8 @@ package simon;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.List;
 
 import guiPractice.components.Action;
-import guiPractice.components.Button;
 import guiPractice.components.ClickableScreen;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
@@ -36,6 +34,7 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 	private void nextRound() {
 		acceptingInput = false;
 		roundNumber += 1;
+		sequence.add(randomMove());
 		progress.setRound(roundNumber);
 		progress.setSequenceSize(sequence.size());
 		changeText("Simon's turn");
@@ -49,9 +48,7 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 	private void playSequence() {
 		ButtonInterfaceFulton b = null;
 		for(MoveInterfaceFulton m: sequence){
-			if(b != null){
-				b.dim();
-			}
+			if(b != null)b.dim();
 			b = m.getButton();
 			b.highlight();
 			try{
@@ -73,65 +70,45 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 		}
 	}
 
-	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		addButtons(viewObjects);
-		progress = getProgress();
-		label = new TextLabel(130,230,300,40,"Let's play Simon!");
-		sequence = new ArrayList<MoveInterfaceFulton>();
-		//add 2 moves to start
-		lastSelectedButton = -1;
-		sequence.add(randomMove());
-		sequence.add(randomMove());
-		roundNumber = 0;
-		viewObjects.add(progress);
-		viewObjects.add(label);
-	}
-
-	
-
 	private MoveInterfaceFulton randomMove() {
-		int nextMove;
-		while(true){
+		int nextMove = (int)(button.length*Math.random());
+		while(nextMove == lastSelectedButton){
 			nextMove = (int)(button.length*Math.random());
-			if(nextMove != lastSelectedButton){
-				break;
-			}
-			//code that randomly selects a ButtonInterfaceX
 		}
 		lastSelectedButton = nextMove;
-		return getMove(button[nextMove]);
-	}
-
-	private MoveInterfaceFulton getMove(ButtonInterfaceFulton b) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Move(button[nextMove]);
 	}
 
 	/**
 	Placeholder until partner finishes implementation of ProgressInterface
 	*/
 	private ProgressInterfaceFulton getProgress() {
-		return new Progress(200, 200, 50, 50);
+		return new Progress();
+	}
+	
+	private ButtonInterfaceFulton getAButton() {
+		return new simon.Button();
 	}
 
-	private void addButtons(ArrayList<Visible> viewObjects) {
+	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		 int numberOfButtons = 5;
 		 button = new ButtonInterfaceFulton[numberOfButtons];
-		 Color[] bColors = {Color.red,Color.blue,Color.green,Color.black,Color.yellow};
+		 Color[] bColors = {Color.red,Color.orange,Color.green,Color.black,Color.yellow};
 		 
 		 for(int i = 0; i < numberOfButtons; i++){
-			 final ButtonInterfaceFulton b = getAButton();
-			 b.setColor(bColors[i]);
-			 b.setX(160 + (int)(100*Math.cos(i*2*Math.PI/(numberOfButtons))));
-			 b.setY(160 + (int)(100*Math.cos(i*2*Math.PI/(numberOfButtons))));
-			 b.setAction(new Action(){
+			 button[i] = getAButton();
+			 button[i].setColor(bColors[i]);
+			 button[i].setX(160 + (int)(100*Math.cos(i*2*Math.PI/(numberOfButtons))));
+			 button[i].setY(200 - (int)(100*Math.sin(i*2*Math.PI/(numberOfButtons))));
+			 final ButtonInterfaceFulton b = button[i];
+			 button[i].setAction(new Action(){
 					public void act(){
 						if(acceptingInput){
 							Thread blink = new Thread(new Runnable(){
 								public void run(){
 									b.highlight();
 									try{
-										Thread.sleep(800);
+										Thread.sleep(400);
 									}catch(Exception e){
 										e.printStackTrace();
 									}
@@ -143,7 +120,8 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 							if(b == sequence.get(sequenceIndex).getButton()){
 								sequenceIndex += 1;
 							}else{
-								gameOver();
+								progress.gameOver();
+								return;
 							}
 							if(sequenceIndex == sequence.size()){
 								Thread nextRound = new Thread(SimonScreenFulton.this);
@@ -155,14 +133,16 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 			 });
 			 viewObjects.add(button[i]);
 		 }
-	}
-	
-	private void gameOver() {
-		progress.gameOver();
-	}
-
-	private ButtonInterfaceFulton getAButton() {
-		return null;
+		 progress = getProgress();
+		 label = new TextLabel(130,230,300,40,"Let's play Simon!");
+		 sequence = new ArrayList<MoveInterfaceFulton>();
+		 lastSelectedButton = -1;
+		 sequence.add(randomMove());
+		 sequence.add(randomMove());
+		 roundNumber = 0;
+		 
+		 viewObjects.add(progress);
+		 viewObjects.add(label);
 	}
 
 }
