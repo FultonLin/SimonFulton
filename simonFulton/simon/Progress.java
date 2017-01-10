@@ -2,6 +2,7 @@ package simon;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
@@ -9,43 +10,57 @@ import guiPractice.components.Component;
 
 public class Progress extends Component implements ProgressInterfaceFulton {
 
-	private String text;
-	private int round;
-	private int sequenceSize;
+	private static final int WIDTH = 120;
+	private static final int HEIGHT = 50;
+	private boolean gameOver;
+	private String round;
+	private String sequence;
 	
-	public Progress(int x, int y, int w, int h) {
-		super(x, y, w, h);
+	public Progress() {
+		super(125, 500, WIDTH, HEIGHT);
 	}
 
 	@Override
 	public void gameOver() {
-		text = "Game Over!";
+		gameOver = true;
+		update();
 	}
 
 	@Override
 	public void update(Graphics2D g) {
-		g = clear(); //clears image and gets new graphics
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setColor(Color.black);
-		text = "Round " + round + "\nSequence Size: " + sequenceSize;
-		g.setFont(new Font("Consolas", Font.PLAIN, 12));
-		if (text != null) {
-			g.drawString(text, 4, getHeight()-5);			
+		FontMetrics fm = g.getFontMetrics();
+		g.setFont(new Font("Helvitca", Font.PLAIN, 12));
+		if(gameOver){
+			g.setColor(new Color(20,55,90));
+			g.fillRect(0, 0, WIDTH, HEIGHT);
+			g.setColor(Color.white);
+			String go = "Game Over!";
+			g.drawString(go, (WIDTH - fm.stringWidth(go)) / 2, 20);
+			g.drawString(sequence, (WIDTH - fm.stringWidth(sequence)) / 2, 40);
 		}
-	}
-	
-	public void setText(String text) {
-		this.text = text;
+		else{
+			g.setColor(new Color(220,255,230));
+			g.fillRect(0, 0, WIDTH, HEIGHT);
+			g.setColor(Color.black);
+			g.drawRect(0, 0, WIDTH-1, HEIGHT-1);
+			if(round !=null && sequence != null){
+				g.drawString(round, (WIDTH - fm.stringWidth(round))/2, 20);
+				g.drawString(sequence, (WIDTH - fm.stringWidth(sequence))/2, 40);
+			}
+		}
 	}
 
 	@Override
 	public void setRound(int roundNumber) {
-		this.round = roundNumber;
+		round = "Round " + round;
+		update();
 	}
 
 	@Override
 	public void setSequenceSize(int size) {
-		this.sequenceSize = size;
+		sequence = "Sequence length "+size;
+		update();
 	}
 
 }
