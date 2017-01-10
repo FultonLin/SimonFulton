@@ -20,13 +20,11 @@ public class Progress extends Component implements ProgressInterfaceFulton {
 		super(125, 500, WIDTH, HEIGHT);
 	}
 
-	@Override
 	public void gameOver() {
 		gameOver = true;
 		update();
 	}
 
-	@Override
 	public void update(Graphics2D g) {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		FontMetrics fm = g.getFontMetrics();
@@ -51,13 +49,11 @@ public class Progress extends Component implements ProgressInterfaceFulton {
 		}
 	}
 
-	@Override
 	public void setRound(int roundNumber) {
-		round = "Round " + round;
+		round = "Round " + roundNumber;
 		update();
 	}
 
-	@Override
 	public void setSequenceSize(int size) {
 		sequence = "Sequence length "+size;
 		update();

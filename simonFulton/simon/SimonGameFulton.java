@@ -4,11 +4,6 @@ import guiPractice.GUIApplication;
 
 public class SimonGameFulton extends GUIApplication {
 
-	public SimonGameFulton() {
-		
-	}
-
-	@Override
 	protected void initScreen() {
 		SimonScreenFulton ssf = new SimonScreenFulton(getWidth(), getHeight());
 		setScreen(ssf);

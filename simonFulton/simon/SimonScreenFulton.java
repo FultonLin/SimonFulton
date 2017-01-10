@@ -117,9 +117,9 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 							});
 							blink.start();
 							
-							if(acceptingInput && b == sequence.get(sequenceIndex).getButton()){
+							if(b == sequence.get(sequenceIndex).getButton()){
 								sequenceIndex += 1;
-							}else if(acceptingInput){
+							}else{
 								progress.gameOver();
 								return;
 							}
