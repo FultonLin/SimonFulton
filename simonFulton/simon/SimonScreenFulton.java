@@ -97,10 +97,10 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 		 
 		 for(int i = 0; i < numberOfButtons; i++){
 			 button[i] = getAButton();
-			 button[i].setColor(bColors[i]);
-			 button[i].setX(160 + (int)(100*Math.cos(i*2*Math.PI/(numberOfButtons))));
-			 button[i].setY(200 - (int)(100*Math.sin(i*2*Math.PI/(numberOfButtons))));
-			 final ButtonInterfaceFulton b = button[i];
+                         final ButtonInterfaceFulton b = button[i];
+			 b.setColor(bColors[i]);
+			 b.setX(160 + (int)(100*Math.cos(i*2*Math.PI/(numberOfButtons))));
+			 b.setY(200 - (int)(100*Math.sin(i*2*Math.PI/(numberOfButtons))));
 			 button[i].setAction(new Action(){
 					public void act(){
 						if(acceptingInput){
