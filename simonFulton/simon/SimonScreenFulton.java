@@ -41,6 +41,9 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 		changeText("Simon's turn");
 		label.setText("");
 		playSequence();
+		changeText("Your turn");
+		acceptingInput = true;
+		sequenceIndex = 0;
 	}
 
 	private void playSequence() {
