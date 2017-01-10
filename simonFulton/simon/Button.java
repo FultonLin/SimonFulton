@@ -34,8 +34,8 @@ public class Button extends Component implements ButtonInterfaceFulton {
 
 	public void setColor(Color color) {
 		this.color = color;
-                displayColor = color;
-                update();
+        displayColor = DIM;
+        update();
 	}
 	
 	public void setAction(Action a) {
@@ -44,13 +44,13 @@ public class Button extends Component implements ButtonInterfaceFulton {
 	}
 
 	public void highlight() {
-	        displayColor = Color.gray;
+	    displayColor = this.color;
 		highlight = true;
 		update();
 	}
 
 	public void dim() {
-		this.color = DIM;
+		displayColor = DIM;
 		highlight = false;
 		update();
 	}
