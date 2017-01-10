@@ -33,7 +33,7 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 
 	private void nextRound() {
 		acceptingInput = false;
-		roundNumber += 1;
+		roundNumber++;
 		sequence.add(randomMove());
 		progress.setRound(roundNumber);
 		progress.setSequenceSize(sequence.size());
@@ -117,9 +117,9 @@ public class SimonScreenFulton extends ClickableScreen implements Runnable {
 							});
 							blink.start();
 							
-							if(b == sequence.get(sequenceIndex).getButton()){
+							if(acceptingInput && b == sequence.get(sequenceIndex).getButton()){
 								sequenceIndex += 1;
-							}else{
+							}else if(acceptingInput){
 								progress.gameOver();
 								return;
 							}
